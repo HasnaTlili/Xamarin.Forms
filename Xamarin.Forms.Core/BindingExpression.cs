@@ -338,8 +338,7 @@ namespace Xamarin.Forms
 				}
 			}
 			else
-				property = sourceType.GetDeclaredProperty(part.Content) ?? sourceType.BaseType?.GetProperty(part.Content);
-
+				property = sourceType.GetDeclaredProperty(part.Content) ?? sourceType.BaseType?.GetProperties().Where(pi => pi.Name == part.Content).FirstOrDefault();
 			if (property != null)
 			{
 				if (property.CanRead && property.GetMethod.IsPublic && !property.GetMethod.IsStatic)
